@@ -33,7 +33,7 @@ public class ExcelUtil {
                 }
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Failed to read test cases from Excel", e);
         }
         return data.toArray(new Object[0][]);
     }
@@ -60,7 +60,7 @@ public class ExcelUtil {
                 workbook.write(fos);
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Failed to update test case status in Excel", e);
         }
     }
 
