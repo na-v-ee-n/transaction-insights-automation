@@ -76,4 +76,12 @@ public class BaseTest {
             test.log(Status.WARNING, "Failed to capture screenshot: " + e.getMessage());
         }
     }
+    
+    protected void logStep(String step) {
+        test.log(Status.INFO, "<b>" + step + "</b>");
+    }
+    
+    protected void logPass(String message) {
+        test.log(Status.PASS, "✓ " + message);
+    }
 }
