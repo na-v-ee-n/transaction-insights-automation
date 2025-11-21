@@ -28,8 +28,8 @@ public class DashboardPage {
     private By tableRows = By.cssSelector("tbody tr");
     private By tableElement = By.cssSelector("table");
     private By tableHeaders = By.cssSelector("thead th");
-    private By successfulLinks = By.xpath("//a[contains(@class, 'text-green') or contains(text(), 'Successful')]");
-    private By erroredLinks = By.xpath("//a[contains(@class, 'text-red') or contains(text(), 'Errored')]");
+    private By successfulLinks = By.xpath("//tbody/tr/td[4]//button[1]");
+    private By erroredLinks = By.xpath("//tbody/tr/td[6]//button[1]");
     private By modalDialog = By.cssSelector("[role='dialog'], .modal");
     private By autoRefreshToggle = By.cssSelector("button[role='switch']");
     private By columnFilters = By.cssSelector("thead input");
@@ -101,12 +101,12 @@ public class DashboardPage {
     public boolean verifyTableColumnsExist(String... expectedColumns) {
         try {
             Set<String> actualColumns = getTableHeaders().stream()
-                .map(header -> header.getText().trim())
-                .collect(Collectors.toSet());
-            
+                    .map(header -> header.getText().trim())
+                    .collect(Collectors.toSet());
+
             for (String expectedColumn : expectedColumns) {
                 boolean found = actualColumns.stream()
-                    .anyMatch(col -> col.contains(expectedColumn));
+                        .anyMatch(col -> col.contains(expectedColumn));
                 if (!found) {
                     logFail("Column not found: " + expectedColumn);
                     return false;
@@ -116,6 +116,30 @@ public class DashboardPage {
         } catch (Exception e) {
             logFail("Error verifying columns: " + e.getMessage());
             return false;
+        }
+    }
+
+    public DashboardPage sortColumn(String columnName) {
+        return sortColumn(columnName, false);
+    }
+
+    public DashboardPage sortColumn(String columnName, boolean descending) {
+        try {
+            List<WebElement> headers = getTableHeaders();
+            for (WebElement header : headers) {
+                if (header.getText().trim().contains(columnName)) {
+                    header.click();
+                    if (descending) {
+                        header.click();
+                    }
+                    return this;
+                }
+            }
+            logFail("Column header not found: " + columnName);
+            throw new ElementNotFoundException("Column header not found: " + columnName);
+        } catch (Exception e) {
+            logFail("Failed to sort column: " + e.getMessage());
+            throw new ElementNotFoundException("Failed to sort column", e);
         }
     }
 
@@ -158,12 +182,25 @@ public class DashboardPage {
 
     public DashboardPage clickFirstSuccessfulLink() {
         try {
+            // Wait for at least one clickable successful link to be present
+            wait.until(ExpectedConditions.presenceOfElementLocated(successfulLinks));
+
             List<WebElement> links = driver.findElements(successfulLinks);
             if (links.isEmpty()) {
                 logFail("No successful transaction links found");
                 throw new ElementNotFoundException("No successful transaction links found");
             }
-            links.get(0).click();
+
+            // Find the first displayed and enabled link
+            WebElement clickableLink = links.stream()
+                    .filter(WebElement::isDisplayed)
+                    .filter(WebElement::isEnabled)
+                    .findFirst()
+                    .orElseThrow(() -> new ElementNotFoundException("No clickable successful transaction links found"));
+
+            // Wait for the element to be clickable and click it
+            wait.until(ExpectedConditions.elementToBeClickable(clickableLink));
+            clickableLink.click();
             return this;
         } catch (ElementNotFoundException e) {
             throw e;
@@ -175,12 +212,25 @@ public class DashboardPage {
 
     public DashboardPage clickFirstErroredLink() {
         try {
+            // Wait for at least one clickable errored link to be present
+            wait.until(ExpectedConditions.presenceOfElementLocated(erroredLinks));
+
             List<WebElement> links = driver.findElements(erroredLinks);
             if (links.isEmpty()) {
                 logFail("No errored transaction links found");
                 throw new ElementNotFoundException("No errored transaction links found");
             }
-            links.get(0).click();
+
+            // Find the first displayed and enabled link
+            WebElement clickableLink = links.stream()
+                    .filter(WebElement::isDisplayed)
+                    .filter(WebElement::isEnabled)
+                    .findFirst()
+                    .orElseThrow(() -> new ElementNotFoundException("No clickable errored transaction links found"));
+
+            // Wait for the element to be clickable and click it
+            wait.until(ExpectedConditions.elementToBeClickable(clickableLink));
+            clickableLink.click();
             return this;
         } catch (ElementNotFoundException e) {
             throw e;

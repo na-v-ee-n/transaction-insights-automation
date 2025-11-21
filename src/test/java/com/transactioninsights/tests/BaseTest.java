@@ -30,6 +30,7 @@ public class BaseTest {
     @BeforeMethod
     public void setUp(Method method) {
         ChromeOptions options = new ChromeOptions();
+        options.addArguments("--headless=new");
         options.addArguments("--remote-allow-origins=*");
         options.addArguments("--disable-notifications");
 
@@ -37,7 +38,7 @@ public class BaseTest {
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(TestConfig.getImplicitWait()));
         driver.get(TestConfig.getAppUrl());
-        
+
         Test testAnnotation = method.getAnnotation(Test.class);
         String testName = method.getName().replaceAll("([A-Z])", " $1").trim();
         test = ExtentReportManager.createTest(testName, testAnnotation.description());
@@ -49,7 +50,7 @@ public class BaseTest {
     public void tearDown(ITestResult result) {
         if (test != null) {
             if (result.getStatus() == ITestResult.FAILURE) {
-                captureScreenshot();
+                captureScreenshot(result.getName());
                 test.log(Status.FAIL, "Test Failed: " + result.getThrowable());
             } else if (result.getStatus() == ITestResult.SUCCESS) {
                 test.log(Status.PASS, "Test Passed");
@@ -67,20 +68,29 @@ public class BaseTest {
     public void tearDownSuite() {
         ExtentReportManager.flush();
     }
-    
-    private void captureScreenshot() {
+
+    private void captureScreenshot(String testName) {
+        if (!TestConfig.isScreenshotOnFailureEnabled()) {
+            return;
+        }
+
         try {
-            String screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BASE64);
-            test.addScreenCaptureFromBase64String(screenshot, "Failure Screenshot");
+            TakesScreenshot ts = (TakesScreenshot) driver;
+            String base64Screenshot = ts.getScreenshotAs(OutputType.BASE64);
+
+            // Embed screenshot in ExtentReport
+            test.addScreenCaptureFromBase64String(base64Screenshot, "Failure Screenshot - " + testName);
+            test.log(Status.INFO, "Screenshot captured for failed test");
+
         } catch (Exception e) {
             test.log(Status.WARNING, "Failed to capture screenshot: " + e.getMessage());
         }
     }
-    
+
     protected void logStep(String step) {
         test.log(Status.INFO, "<b>" + step + "</b>");
     }
-    
+
     protected void logPass(String message) {
         test.log(Status.PASS, "✓ " + message);
     }
