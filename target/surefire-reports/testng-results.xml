@@ -1,0 +1,896 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="13" passed="9" failed="4" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2025-11-21T14:25:08 IST" name="Transaction Insights Automation Suite" finished-at="2025-11-21T14:28:11 IST" duration-ms="183433">
+    <groups>
+    </groups>
+    <test started-at="2025-11-21T14:25:08 IST" name="Dashboard Tests" finished-at="2025-11-21T14:28:11 IST" duration-ms="183433">
+      <class name="com.transactioninsights.tests.DashboardTest">
+        <test-method is-config="true" signature="setUpSuite()[pri:0, instance:com.transactioninsights.tests.DashboardTest@6973b51b]" started-at="2025-11-21T14:25:07 IST" name="setUpSuite" finished-at="2025-11-21T14:25:08 IST" duration-ms="597" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUpSuite -->
+        <test-method is-config="true" signature="setUp(org.testng.ITestResult)[pri:0, instance:com.transactioninsights.tests.DashboardTest@6973b51b]" started-at="2025-11-21T14:25:09 IST" name="setUp" finished-at="2025-11-21T14:25:22 IST" duration-ms="12561" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name={null} status=CREATED method=DashboardTest.executeTestCase(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:com.transactioninsights.tests.DashboardTest@6973b51b] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="executeTestCase(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:com.transactioninsights.tests.DashboardTest@6973b51b]" started-at="2025-11-21T14:25:22 IST" name="executeTestCase" description="Execute test cases from Excel data" data-provider="testCases" finished-at="2025-11-21T14:25:24 IST" duration-ms="2355" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[TC_001]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[Verify Dashboard Loads Successfully]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[Application is running]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[1. Navigate to http://localhost:3001/]]>
+              </value>
+            </param>
+            <param index="4">
+              <value>
+                <![CDATA[1. Dashboard loads.
+2. 'Transaction Insights Dashboard' title is visible.
+3. Transaction table is displayed with data.]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- executeTestCase -->
+        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.transactioninsights.tests.DashboardTest@6973b51b]" started-at="2025-11-21T14:25:24 IST" name="tearDown" finished-at="2025-11-21T14:25:25 IST" duration-ms="909" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=executeTestCase status=SUCCESS method=DashboardTest.executeTestCase(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:com.transactioninsights.tests.DashboardTest@6973b51b] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setUp(org.testng.ITestResult)[pri:0, instance:com.transactioninsights.tests.DashboardTest@6973b51b]" started-at="2025-11-21T14:25:25 IST" name="setUp" finished-at="2025-11-21T14:25:32 IST" duration-ms="6672" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name={null} status=CREATED method=DashboardTest.executeTestCase(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:com.transactioninsights.tests.DashboardTest@6973b51b] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="executeTestCase(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:com.transactioninsights.tests.DashboardTest@6973b51b]" started-at="2025-11-21T14:25:32 IST" name="executeTestCase" description="Execute test cases from Excel data" data-provider="testCases" finished-at="2025-11-21T14:25:35 IST" duration-ms="3315" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[TC_002]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[Verify Table Columns]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[Dashboard is loaded]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[1. Observe the table headers]]>
+              </value>
+            </param>
+            <param index="4">
+              <value>
+                <![CDATA[1. Columns displayed: Name, Received Date, Total Records, Successful, Pending, Errored, Status, Actions (Menu).]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- executeTestCase -->
+        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.transactioninsights.tests.DashboardTest@6973b51b]" started-at="2025-11-21T14:25:35 IST" name="tearDown" finished-at="2025-11-21T14:25:36 IST" duration-ms="1149" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=executeTestCase status=SUCCESS method=DashboardTest.executeTestCase(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:com.transactioninsights.tests.DashboardTest@6973b51b] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setUp(org.testng.ITestResult)[pri:0, instance:com.transactioninsights.tests.DashboardTest@6973b51b]" started-at="2025-11-21T14:25:36 IST" name="setUp" finished-at="2025-11-21T14:25:41 IST" duration-ms="5066" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name={null} status=CREATED method=DashboardTest.executeTestCase(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:com.transactioninsights.tests.DashboardTest@6973b51b] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="executeTestCase(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:com.transactioninsights.tests.DashboardTest@6973b51b]" started-at="2025-11-21T14:25:41 IST" name="executeTestCase" description="Execute test cases from Excel data" data-provider="testCases" finished-at="2025-11-21T14:25:43 IST" duration-ms="1938" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[TC_003]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[Verify Data Consistency]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[Dashboard is loaded]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[1. Check a row's data (e.g., 'Total Records')]]>
+              </value>
+            </param>
+            <param index="4">
+              <value>
+                <![CDATA[1. 'Total Records' should equal sum of Successful + Pending + Errored (if logic applies).]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- executeTestCase -->
+        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.transactioninsights.tests.DashboardTest@6973b51b]" started-at="2025-11-21T14:25:43 IST" name="tearDown" finished-at="2025-11-21T14:25:44 IST" duration-ms="1261" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=executeTestCase status=SUCCESS method=DashboardTest.executeTestCase(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:com.transactioninsights.tests.DashboardTest@6973b51b] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setUp(org.testng.ITestResult)[pri:0, instance:com.transactioninsights.tests.DashboardTest@6973b51b]" started-at="2025-11-21T14:25:44 IST" name="setUp" finished-at="2025-11-21T14:25:51 IST" duration-ms="6131" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name={null} status=CREATED method=DashboardTest.executeTestCase(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:com.transactioninsights.tests.DashboardTest@6973b51b] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="executeTestCase(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:com.transactioninsights.tests.DashboardTest@6973b51b]" started-at="2025-11-21T14:25:51 IST" name="executeTestCase" description="Execute test cases from Excel data" data-provider="testCases" finished-at="2025-11-21T14:25:52 IST" duration-ms="1729" status="FAIL">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[TC_004]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[Verify Global Search]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[Dashboard is loaded]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[1. Enter a valid name (e.g., 'Arjun') in the Search bar.]]>
+              </value>
+            </param>
+            <param index="4">
+              <value>
+                <![CDATA[1. Table filters to show only rows matching 'Arjun'.]]>
+              </value>
+            </param>
+          </params>
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[Filtered rows should be less than or equal to initial expected [true] but found [false]]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: Filtered rows should be less than or equal to initial expected [true] but found [false]
+at org.testng.Assert.fail(Assert.java:111)
+at org.testng.Assert.failNotEquals(Assert.java:1578)
+at org.testng.Assert.assertTrue(Assert.java:57)
+at com.transactioninsights.tests.DashboardTest.executeTestCase(DashboardTest.java:106)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:664)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:228)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:961)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:201)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+at org.testng.TestRunner.privateRun(TestRunner.java:819)
+at org.testng.TestRunner.run(TestRunner.java:619)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:443)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:437)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:397)
+at org.testng.SuiteRunner.run(SuiteRunner.java:336)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1301)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1228)
+at org.testng.TestNG.runSuites(TestNG.java:1134)
+at org.testng.TestNG.run(TestNG.java:1101)
+at org.apache.maven.surefire.testng.TestNGExecutor.run(TestNGExecutor.java:308)
+at org.apache.maven.surefire.testng.TestNGXmlTestSuite.execute(TestNGXmlTestSuite.java:71)
+at org.apache.maven.surefire.testng.TestNGProvider.invoke(TestNGProvider.java:113)
+at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:385)
+at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162)
+at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
+at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- executeTestCase -->
+        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.transactioninsights.tests.DashboardTest@6973b51b]" started-at="2025-11-21T14:25:52 IST" name="tearDown" finished-at="2025-11-21T14:25:53 IST" duration-ms="545" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=executeTestCase status=FAILURE method=DashboardTest.executeTestCase(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:com.transactioninsights.tests.DashboardTest@6973b51b] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setUp(org.testng.ITestResult)[pri:0, instance:com.transactioninsights.tests.DashboardTest@6973b51b]" started-at="2025-11-21T14:25:53 IST" name="setUp" finished-at="2025-11-21T14:26:00 IST" duration-ms="7587" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name={null} status=CREATED method=DashboardTest.executeTestCase(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:com.transactioninsights.tests.DashboardTest@6973b51b] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="executeTestCase(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:com.transactioninsights.tests.DashboardTest@6973b51b]" started-at="2025-11-21T14:26:00 IST" name="executeTestCase" description="Execute test cases from Excel data" data-provider="testCases" finished-at="2025-11-21T14:26:01 IST" duration-ms="146" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[TC_005]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[Verify Date Range Filter]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[Dashboard is loaded]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[1. Select a Start Date and End Date containing known transactions.]]>
+              </value>
+            </param>
+            <param index="4">
+              <value>
+                <![CDATA[1. Table updates to show only transactions within the selected range.]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- executeTestCase -->
+        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.transactioninsights.tests.DashboardTest@6973b51b]" started-at="2025-11-21T14:26:01 IST" name="tearDown" finished-at="2025-11-21T14:26:01 IST" duration-ms="829" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=executeTestCase status=SUCCESS method=DashboardTest.executeTestCase(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:com.transactioninsights.tests.DashboardTest@6973b51b] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setUp(org.testng.ITestResult)[pri:0, instance:com.transactioninsights.tests.DashboardTest@6973b51b]" started-at="2025-11-21T14:26:01 IST" name="setUp" finished-at="2025-11-21T14:26:07 IST" duration-ms="5729" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name={null} status=CREATED method=DashboardTest.executeTestCase(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:com.transactioninsights.tests.DashboardTest@6973b51b] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="executeTestCase(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:com.transactioninsights.tests.DashboardTest@6973b51b]" started-at="2025-11-21T14:26:07 IST" name="executeTestCase" description="Execute test cases from Excel data" data-provider="testCases" finished-at="2025-11-21T14:26:09 IST" duration-ms="1582" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[TC_006]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[Verify Column Filter (Name)]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[Dashboard is loaded]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[1. Enter text in the 'Name' column filter input.]]>
+              </value>
+            </param>
+            <param index="4">
+              <value>
+                <![CDATA[1. Table filters to show rows matching the name input.]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- executeTestCase -->
+        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.transactioninsights.tests.DashboardTest@6973b51b]" started-at="2025-11-21T14:26:09 IST" name="tearDown" finished-at="2025-11-21T14:26:09 IST" duration-ms="775" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=executeTestCase status=SUCCESS method=DashboardTest.executeTestCase(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:com.transactioninsights.tests.DashboardTest@6973b51b] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setUp(org.testng.ITestResult)[pri:0, instance:com.transactioninsights.tests.DashboardTest@6973b51b]" started-at="2025-11-21T14:26:09 IST" name="setUp" finished-at="2025-11-21T14:26:15 IST" duration-ms="5113" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name={null} status=CREATED method=DashboardTest.executeTestCase(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:com.transactioninsights.tests.DashboardTest@6973b51b] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="executeTestCase(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:com.transactioninsights.tests.DashboardTest@6973b51b]" started-at="2025-11-21T14:26:15 IST" name="executeTestCase" description="Execute test cases from Excel data" data-provider="testCases" finished-at="2025-11-21T14:26:16 IST" duration-ms="996" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[TC_007]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[Verify Column Filter (Status)]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[Dashboard is loaded]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[1. Enter/Select a status in the 'Status' column filter.]]>
+              </value>
+            </param>
+            <param index="4">
+              <value>
+                <![CDATA[1. Table filters to show rows with the selected status.]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- executeTestCase -->
+        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.transactioninsights.tests.DashboardTest@6973b51b]" started-at="2025-11-21T14:26:16 IST" name="tearDown" finished-at="2025-11-21T14:26:17 IST" duration-ms="1231" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=executeTestCase status=SUCCESS method=DashboardTest.executeTestCase(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:com.transactioninsights.tests.DashboardTest@6973b51b] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setUp(org.testng.ITestResult)[pri:0, instance:com.transactioninsights.tests.DashboardTest@6973b51b]" started-at="2025-11-21T14:26:17 IST" name="setUp" finished-at="2025-11-21T14:26:22 IST" duration-ms="5191" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name={null} status=CREATED method=DashboardTest.executeTestCase(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:com.transactioninsights.tests.DashboardTest@6973b51b] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="executeTestCase(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:com.transactioninsights.tests.DashboardTest@6973b51b]" started-at="2025-11-21T14:26:22 IST" name="executeTestCase" description="Execute test cases from Excel data" data-provider="testCases" finished-at="2025-11-21T14:26:26 IST" duration-ms="3684" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[TC_008]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[Verify Clear Filters]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[Filters are applied]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[1. Clear the search bar or filter inputs.]]>
+              </value>
+            </param>
+            <param index="4">
+              <value>
+                <![CDATA[1. Table resets to show all transactions.]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- executeTestCase -->
+        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.transactioninsights.tests.DashboardTest@6973b51b]" started-at="2025-11-21T14:26:26 IST" name="tearDown" finished-at="2025-11-21T14:26:27 IST" duration-ms="983" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=executeTestCase status=SUCCESS method=DashboardTest.executeTestCase(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:com.transactioninsights.tests.DashboardTest@6973b51b] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setUp(org.testng.ITestResult)[pri:0, instance:com.transactioninsights.tests.DashboardTest@6973b51b]" started-at="2025-11-21T14:26:27 IST" name="setUp" finished-at="2025-11-21T14:26:33 IST" duration-ms="5950" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name={null} status=CREATED method=DashboardTest.executeTestCase(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:com.transactioninsights.tests.DashboardTest@6973b51b] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="executeTestCase(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:com.transactioninsights.tests.DashboardTest@6973b51b]" started-at="2025-11-21T14:26:33 IST" name="executeTestCase" description="Execute test cases from Excel data" data-provider="testCases" finished-at="2025-11-21T14:26:53 IST" duration-ms="20249" status="FAIL">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[TC_009]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[Verify Successful Transactions Modal]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[Dashboard is loaded]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[1. Click the numeric link in the 'Successful' column for a row.]]>
+              </value>
+            </param>
+            <param index="4">
+              <value>
+                <![CDATA[1. A modal opens titled 'Successful Transactions' (or similar).
+2. Details of successful transactions are displayed.]]>
+              </value>
+            </param>
+          </params>
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[Modal did not open expected [true] but found [false]]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: Modal did not open expected [true] but found [false]
+at org.testng.Assert.fail(Assert.java:111)
+at org.testng.Assert.failNotEquals(Assert.java:1578)
+at org.testng.Assert.assertTrue(Assert.java:57)
+at com.transactioninsights.tests.DashboardTest.executeTestCase(DashboardTest.java:184)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:664)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:228)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:961)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:201)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+at org.testng.TestRunner.privateRun(TestRunner.java:819)
+at org.testng.TestRunner.run(TestRunner.java:619)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:443)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:437)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:397)
+at org.testng.SuiteRunner.run(SuiteRunner.java:336)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1301)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1228)
+at org.testng.TestNG.runSuites(TestNG.java:1134)
+at org.testng.TestNG.run(TestNG.java:1101)
+at org.apache.maven.surefire.testng.TestNGExecutor.run(TestNGExecutor.java:308)
+at org.apache.maven.surefire.testng.TestNGXmlTestSuite.execute(TestNGXmlTestSuite.java:71)
+at org.apache.maven.surefire.testng.TestNGProvider.invoke(TestNGProvider.java:113)
+at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:385)
+at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162)
+at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
+at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- executeTestCase -->
+        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.transactioninsights.tests.DashboardTest@6973b51b]" started-at="2025-11-21T14:26:53 IST" name="tearDown" finished-at="2025-11-21T14:26:54 IST" duration-ms="1060" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=executeTestCase status=FAILURE method=DashboardTest.executeTestCase(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:com.transactioninsights.tests.DashboardTest@6973b51b] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setUp(org.testng.ITestResult)[pri:0, instance:com.transactioninsights.tests.DashboardTest@6973b51b]" started-at="2025-11-21T14:26:54 IST" name="setUp" finished-at="2025-11-21T14:27:01 IST" duration-ms="7271" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name={null} status=CREATED method=DashboardTest.executeTestCase(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:com.transactioninsights.tests.DashboardTest@6973b51b] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="executeTestCase(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:com.transactioninsights.tests.DashboardTest@6973b51b]" started-at="2025-11-21T14:27:01 IST" name="executeTestCase" description="Execute test cases from Excel data" data-provider="testCases" finished-at="2025-11-21T14:27:21 IST" duration-ms="20179" status="FAIL">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[TC_010]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[Verify Errored Transactions Modal]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[Dashboard is loaded]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[1. Click the numeric link in the 'Errored' column for a row.]]>
+              </value>
+            </param>
+            <param index="4">
+              <value>
+                <![CDATA[1. A modal opens titled 'Errored Transactions' (or similar).
+2. Details of errored transactions are displayed (e.g., Transaction ID, Error Count).]]>
+              </value>
+            </param>
+          </params>
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[Modal did not open expected [true] but found [false]]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: Modal did not open expected [true] but found [false]
+at org.testng.Assert.fail(Assert.java:111)
+at org.testng.Assert.failNotEquals(Assert.java:1578)
+at org.testng.Assert.assertTrue(Assert.java:57)
+at com.transactioninsights.tests.DashboardTest.executeTestCase(DashboardTest.java:205)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:664)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:228)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:961)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:201)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+at org.testng.TestRunner.privateRun(TestRunner.java:819)
+at org.testng.TestRunner.run(TestRunner.java:619)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:443)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:437)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:397)
+at org.testng.SuiteRunner.run(SuiteRunner.java:336)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1301)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1228)
+at org.testng.TestNG.runSuites(TestNG.java:1134)
+at org.testng.TestNG.run(TestNG.java:1101)
+at org.apache.maven.surefire.testng.TestNGExecutor.run(TestNGExecutor.java:308)
+at org.apache.maven.surefire.testng.TestNGXmlTestSuite.execute(TestNGXmlTestSuite.java:71)
+at org.apache.maven.surefire.testng.TestNGProvider.invoke(TestNGProvider.java:113)
+at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:385)
+at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162)
+at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
+at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- executeTestCase -->
+        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.transactioninsights.tests.DashboardTest@6973b51b]" started-at="2025-11-21T14:27:21 IST" name="tearDown" finished-at="2025-11-21T14:27:22 IST" duration-ms="983" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=executeTestCase status=FAILURE method=DashboardTest.executeTestCase(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:com.transactioninsights.tests.DashboardTest@6973b51b] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setUp(org.testng.ITestResult)[pri:0, instance:com.transactioninsights.tests.DashboardTest@6973b51b]" started-at="2025-11-21T14:27:22 IST" name="setUp" finished-at="2025-11-21T14:27:30 IST" duration-ms="7402" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name={null} status=CREATED method=DashboardTest.executeTestCase(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:com.transactioninsights.tests.DashboardTest@6973b51b] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="executeTestCase(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:com.transactioninsights.tests.DashboardTest@6973b51b]" started-at="2025-11-21T14:27:30 IST" name="executeTestCase" description="Execute test cases from Excel data" data-provider="testCases" finished-at="2025-11-21T14:27:50 IST" duration-ms="20115" status="FAIL">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[TC_011]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[Verify Closing Modal]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[Modal is open]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[1. Click the 'Close' button or outside the modal area.]]>
+              </value>
+            </param>
+            <param index="4">
+              <value>
+                <![CDATA[1. Modal closes.
+2. User is returned to the main dashboard.]]>
+              </value>
+            </param>
+          </params>
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[Modal not displayed expected [true] but found [false]]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: Modal not displayed expected [true] but found [false]
+at org.testng.Assert.fail(Assert.java:111)
+at org.testng.Assert.failNotEquals(Assert.java:1578)
+at org.testng.Assert.assertTrue(Assert.java:57)
+at com.transactioninsights.tests.DashboardTest.executeTestCase(DashboardTest.java:222)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:664)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:228)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:961)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:201)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+at org.testng.TestRunner.privateRun(TestRunner.java:819)
+at org.testng.TestRunner.run(TestRunner.java:619)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:443)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:437)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:397)
+at org.testng.SuiteRunner.run(SuiteRunner.java:336)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1301)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1228)
+at org.testng.TestNG.runSuites(TestNG.java:1134)
+at org.testng.TestNG.run(TestNG.java:1101)
+at org.apache.maven.surefire.testng.TestNGExecutor.run(TestNGExecutor.java:308)
+at org.apache.maven.surefire.testng.TestNGXmlTestSuite.execute(TestNGXmlTestSuite.java:71)
+at org.apache.maven.surefire.testng.TestNGProvider.invoke(TestNGProvider.java:113)
+at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:385)
+at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162)
+at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
+at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- executeTestCase -->
+        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.transactioninsights.tests.DashboardTest@6973b51b]" started-at="2025-11-21T14:27:50 IST" name="tearDown" finished-at="2025-11-21T14:27:51 IST" duration-ms="1034" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=executeTestCase status=FAILURE method=DashboardTest.executeTestCase(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:com.transactioninsights.tests.DashboardTest@6973b51b] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setUp(org.testng.ITestResult)[pri:0, instance:com.transactioninsights.tests.DashboardTest@6973b51b]" started-at="2025-11-21T14:27:51 IST" name="setUp" finished-at="2025-11-21T14:27:59 IST" duration-ms="7810" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name={null} status=CREATED method=DashboardTest.executeTestCase(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:com.transactioninsights.tests.DashboardTest@6973b51b] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="executeTestCase(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:com.transactioninsights.tests.DashboardTest@6973b51b]" started-at="2025-11-21T14:27:59 IST" name="executeTestCase" description="Execute test cases from Excel data" data-provider="testCases" finished-at="2025-11-21T14:28:00 IST" duration-ms="1117" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[TC_012]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[Verify Auto-Refresh Toggle]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[Dashboard is loaded]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[1. Click the 'Auto-refresh' toggle switch.]]>
+              </value>
+            </param>
+            <param index="4">
+              <value>
+                <![CDATA[1. Toggle state changes (On/Off).
+2. (If On) Data refreshes periodically (verify if visual indicator exists).]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- executeTestCase -->
+        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.transactioninsights.tests.DashboardTest@6973b51b]" started-at="2025-11-21T14:28:00 IST" name="tearDown" finished-at="2025-11-21T14:28:00 IST" duration-ms="580" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=executeTestCase status=SUCCESS method=DashboardTest.executeTestCase(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:com.transactioninsights.tests.DashboardTest@6973b51b] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setUp(org.testng.ITestResult)[pri:0, instance:com.transactioninsights.tests.DashboardTest@6973b51b]" started-at="2025-11-21T14:28:00 IST" name="setUp" finished-at="2025-11-21T14:28:08 IST" duration-ms="7320" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name={null} status=CREATED method=DashboardTest.executeTestCase(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:com.transactioninsights.tests.DashboardTest@6973b51b] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="executeTestCase(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:com.transactioninsights.tests.DashboardTest@6973b51b]" started-at="2025-11-21T14:28:08 IST" name="executeTestCase" description="Execute test cases from Excel data" data-provider="testCases" finished-at="2025-11-21T14:28:10 IST" duration-ms="2114" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[TC_013]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[Verify Row Action Menu]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[Dashboard is loaded]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[1. Click the 'Open menu' (three dots) button on a row.]]>
+              </value>
+            </param>
+            <param index="4">
+              <value>
+                <![CDATA[1. A dropdown menu appears (e.g., View Details, Download). *Note: Feature availability to be confirmed.*]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- executeTestCase -->
+        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.transactioninsights.tests.DashboardTest@6973b51b]" started-at="2025-11-21T14:28:10 IST" name="tearDown" finished-at="2025-11-21T14:28:11 IST" duration-ms="1393" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=executeTestCase status=SUCCESS method=DashboardTest.executeTestCase(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:com.transactioninsights.tests.DashboardTest@6973b51b] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="tearDownSuite()[pri:0, instance:com.transactioninsights.tests.DashboardTest@6973b51b]" started-at="2025-11-21T14:28:11 IST" name="tearDownSuite" finished-at="2025-11-21T14:28:12 IST" duration-ms="780" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDownSuite -->
+      </class> <!-- com.transactioninsights.tests.DashboardTest -->
+    </test> <!-- Dashboard Tests -->
+  </suite> <!-- Transaction Insights Automation Suite -->
+</testng-results>
