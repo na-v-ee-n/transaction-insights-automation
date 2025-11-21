@@ -2,6 +2,7 @@ package com.transactioninsights.tests;
 
 import com.transactioninsights.pages.DashboardPage;
 import com.transactioninsights.utils.ExcelUtil;
+import com.transactioninsights.utils.ExtentReportManager;
 import com.aventstack.extentreports.Status;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
@@ -17,6 +18,9 @@ public class DashboardTest extends BaseTest {
     @Test(dataProvider = "testCases", description = "Execute test cases from Excel data")
     public void executeTestCase(String testCaseId, String title, String preConditions, String steps,
             String expectedResult) {
+        // Set test name with TC ID and title
+        test = ExtentReportManager.createTest(testCaseId + " -------- " + title, "Execute test cases from Excel data");
+
         // Assign category for reporting
         test.assignCategory("Dashboard Testing");
 
@@ -265,8 +269,7 @@ public class DashboardTest extends BaseTest {
             }
 
             if (isPassed) {
-                ExcelUtil.updateTestCaseStatus(testCaseId, "Yes");
-                test.log(Status.PASS, "✅ <b>TEST CASE PASSED</b> - Excel updated with automation status");
+                test.log(Status.PASS, "✅ <b>TEST CASE PASSED</b>");
             } else {
                 test.log(Status.SKIP, "⏭ Test case skipped or not fully implemented");
             }

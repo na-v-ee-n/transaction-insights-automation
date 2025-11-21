@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="Transaction Insights Automation Suite">
-    <test name="Dashboard Tests">
-        <classes>
-            <class name="com.transactioninsights.tests.DashboardTest"/>
-        </classes>
-    </test>
-</suite>

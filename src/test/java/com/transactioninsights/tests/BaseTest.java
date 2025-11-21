@@ -26,8 +26,7 @@ public class BaseTest {
 
     @BeforeMethod
     public void setUp(ITestResult result) {
-        test = ExtentReportManager.createTest(result.getMethod().getMethodName(), result.getMethod().getDescription());
-
+        // Test name will be set in the test method itself with actual parameters
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
 
@@ -39,12 +38,14 @@ public class BaseTest {
 
     @AfterMethod
     public void tearDown(ITestResult result) {
-        if (result.getStatus() == ITestResult.FAILURE) {
-            test.log(Status.FAIL, "Test Failed: " + result.getThrowable());
-        } else if (result.getStatus() == ITestResult.SUCCESS) {
-            test.log(Status.PASS, "Test Passed");
-        } else {
-            test.log(Status.SKIP, "Test Skipped");
+        if (test != null) {
+            if (result.getStatus() == ITestResult.FAILURE) {
+                test.log(Status.FAIL, "Test Failed: " + result.getThrowable());
+            } else if (result.getStatus() == ITestResult.SUCCESS) {
+                test.log(Status.PASS, "Test Passed");
+            } else {
+                test.log(Status.SKIP, "Test Skipped");
+            }
         }
 
         if (driver != null) {
