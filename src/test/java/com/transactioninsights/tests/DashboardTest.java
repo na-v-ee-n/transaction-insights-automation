@@ -52,7 +52,7 @@ public class DashboardTest extends BaseTest {
         logPass("Table has " + rowCount + " rows for consistency verification");
     }
 
-    @Test(description = "TC_004: Verify search functionality filters table correctly", retryAnalyzer = TestRetryAnalyzer.class, enabled = false)
+    @Test(description = "TC_004: Verify search functionality filters table correctly", retryAnalyzer = TestRetryAnalyzer.class, enabled = true)
     public void testSearchFunctionality() {
         logStep("Step 1: Get initial row count");
         int initialRows = dashboardPage.getRowCount();
