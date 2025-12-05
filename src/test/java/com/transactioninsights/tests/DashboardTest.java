@@ -154,4 +154,9 @@ public class DashboardTest extends BaseTest {
     public void testRowActionMenu() {
         Assert.assertTrue(dashboardPage.isDashboardLoaded(), "Dashboard not loaded");
     }
+
+    @Test(description = "TC_014: This is LLM Created method and yet to implement")
+    public void testLLMCreatedMethod() {
+        // TODO: Implement this test method
+    }
 }
