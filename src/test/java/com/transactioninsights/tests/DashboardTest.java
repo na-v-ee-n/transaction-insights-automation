@@ -154,4 +154,16 @@ public class DashboardTest extends BaseTest {
     public void testRowActionMenu() {
         Assert.assertTrue(dashboardPage.isDashboardLoaded(), "Dashboard not loaded");
     }
+
+    @Test(description = "TC_033: Created by AI")
+    public void testcase33CreatedByAI() {
+        logStep("Step 1: Verify dashboard is loaded");
+        Assert.assertTrue(dashboardPage.isDashboardLoaded(), "Dashboard not loaded");
+        logPass("Dashboard is loaded");
+
+        logStep("Step 2: Verify transaction table has at least one row");
+        int rowCount = dashboardPage.getRowCount();
+        Assert.assertTrue(rowCount > 0, "Transaction table is empty");
+        logPass("Transaction table has " + rowCount + " rows");
+    }
 }
