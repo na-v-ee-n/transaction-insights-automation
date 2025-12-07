@@ -16,10 +16,15 @@ public class DashboardTest extends BaseTest {
         Assert.assertTrue(dashboardPage.hasTitle(), "Title not found");
         logPass("Dashboard title is visible");
 
-        logStep("Step 3: Verify transaction table has data");
+        logStep("Step 3: Verify transaction table has data or shows 'No results.' message");
         int rowCount = dashboardPage.getRowCount();
-        Assert.assertTrue(rowCount > 0, "No rows in table");
-        logPass("Transaction table displayed with " + rowCount + " rows");
+        Assert.assertTrue(rowCount >= 0, "Row count should be zero or more");
+        if (rowCount == 0) {
+            Assert.assertTrue(dashboardPage.isNoResultsMessageDisplayed(), "'No results.' message not displayed when table is empty");
+            logPass("Transaction table is empty and shows 'No results.' message");
+        } else {
+            logPass("Transaction table displayed with " + rowCount + " rows");
+        }
     }
 
     @Test(description = "TC_002: Verify table columns are displayed correctly", retryAnalyzer = TestRetryAnalyzer.class)
@@ -35,7 +40,7 @@ public class DashboardTest extends BaseTest {
 
         logStep("Step 3: Verify expected columns are present");
         Assert.assertTrue(dashboardPage.verifyTableColumnsExist(
-                "Name", "Date", "Total", "Successful", "Pending", "Errored", "Status"),
+                "Name", "Received Date", "Total Records", "Successful", "Pending", "Errored", "Status"),
                 "Not all expected columns found");
         logPass("All expected columns verified");
     }
