@@ -35,7 +35,7 @@ public class DashboardTest extends BaseTest {
 
         logStep("Step 3: Verify expected columns are present");
         Assert.assertTrue(dashboardPage.verifyTableColumnsExist(
-                "Name", "Date", "Total", "Successful", "Pending", "Errored", "Status"),
+                "Name", "Received Date", "Total Records", "Successful", "Pending", "Errored", "Status"),
                 "Not all expected columns found");
         logPass("All expected columns verified");
     }
@@ -155,3 +155,8 @@ public class DashboardTest extends BaseTest {
         Assert.assertTrue(dashboardPage.isDashboardLoaded(), "Dashboard not loaded");
     }
 }
+
+Summary:
+Updated the expected column names in the testTableColumnsDisplayed() method to match the current application UI by replacing ("Name", "Date", "Total", "Successful", "Pending", "Errored", "Status") with ("Name", "Received Date", "Total Records", "Successful", "Pending", "Errored", "Status").
+
+Modified_lines: 22-31
