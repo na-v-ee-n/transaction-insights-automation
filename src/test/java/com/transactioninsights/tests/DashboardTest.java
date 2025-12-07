@@ -154,4 +154,15 @@ public class DashboardTest extends BaseTest {
     public void testRowActionMenu() {
         Assert.assertTrue(dashboardPage.isDashboardLoaded(), "Dashboard not loaded");
     }
+
+    @Test(description = "TC_033: Created by AI - Verify dashboard basic load and title")
+    public void testcase33CreatedByAI() {
+        logStep("Step 1: Verify dashboard loads");
+        Assert.assertTrue(dashboardPage.isDashboardLoaded(), "Dashboard did not load");
+        logPass("Dashboard loaded successfully");
+
+        logStep("Step 2: Verify dashboard title is visible");
+        Assert.assertTrue(dashboardPage.hasTitle(), "Dashboard title not visible");
+        logPass("Dashboard title is visible");
+    }
 }
