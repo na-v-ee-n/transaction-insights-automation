@@ -154,4 +154,15 @@ public class DashboardTest extends BaseTest {
     public void testRowActionMenu() {
         Assert.assertTrue(dashboardPage.isDashboardLoaded(), "Dashboard not loaded");
     }
+
+    @Test(description = "TC_017: Verify the page title is 'Transaction Insights Dashbaord'")
+    public void testPageTitle() {
+        logStep("Step 1: Get the page title");
+        String actualTitle = dashboardPage.getPageTitle();
+        logPass("Page title retrieved: " + actualTitle);
+
+        logStep("Step 2: Verify the page title is 'Transaction Insights Dashbaord'");
+        Assert.assertEquals(actualTitle, "Transaction Insights Dashbaord", "Page title does not match expected");
+        logPass("Page title verified successfully");
+    }
 }
