@@ -18,6 +18,8 @@ import java.time.Duration;
 
 public class BaseTest {
 
+    // Comment by AGent
+
     protected WebDriver driver;
     protected ExtentTest test;
     protected DashboardPage dashboardPage;
