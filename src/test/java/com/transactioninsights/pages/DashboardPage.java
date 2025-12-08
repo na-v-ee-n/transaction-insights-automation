@@ -33,6 +33,7 @@ public class DashboardPage {
     private By modalDialog = By.cssSelector("[role='dialog'], .modal");
     private By autoRefreshToggle = By.cssSelector("button[role='switch']");
     private By columnFilters = By.cssSelector("thead input");
+    private By newLocator = By.cssSelector(".new-locator-class"); // Added new locator
 
     public DashboardPage(WebDriver driver) {
         this(driver, null);
