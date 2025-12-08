@@ -17,6 +17,8 @@ import java.util.stream.Collectors;
 
 public class DashboardPage {
 
+    // This comment is by AI
+
     private WebDriver driver;
     private WebDriverWait wait;
     private ExtentTest test;
