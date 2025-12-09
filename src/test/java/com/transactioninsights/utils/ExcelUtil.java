@@ -1,81 +1,58 @@
 package com.transactioninsights.utils;
 
-import org.apache.poi.ss.usermodel.*;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+public class DbUtil {
 
-public class ExcelUtil {
+    private static final String DB_URL = "jdbc:mysql://localhost:3306/your_database";
+    private static final String DB_USER = "your_username";
+    private static final String DB_PASSWORD = "your_password";
 
-    private static final String FILE_PATH = "src/test/resources/testcases/testcases.xlsx";
+    private Connection connection;
 
-    public static Object[][] getTestCases() {
-        List<Object[]> data = new ArrayList<>();
-        try (FileInputStream fis = new FileInputStream(FILE_PATH);
-                Workbook workbook = new XSSFWorkbook(fis)) {
-            Sheet sheet = workbook.getSheetAt(0);
-            int rowCount = sheet.getLastRowNum();
-
-            for (int i = 1; i <= rowCount; i++) { // Start from 1 to skip header
-                Row row = sheet.getRow(i);
-                if (row != null) {
-                    String testCaseId = getCellValue(row.getCell(0));
-                    String testCaseTitle = getCellValue(row.getCell(1));
-                    String preConditions = getCellValue(row.getCell(2));
-                    String steps = getCellValue(row.getCell(3));
-                    String expectedResult = getCellValue(row.getCell(4));
-
-                    data.add(new Object[] { testCaseId, testCaseTitle, preConditions, steps, expectedResult });
-                }
-            }
-        } catch (IOException e) {
-            throw new RuntimeException("Failed to read test cases from Excel", e);
-        }
-        return data.toArray(new Object[0][]);
-    }
-
-    public static void updateTestCaseStatus(String testCaseId, String status) {
-        try (FileInputStream fis = new FileInputStream(FILE_PATH);
-                Workbook workbook = new XSSFWorkbook(fis)) {
-            Sheet sheet = workbook.getSheetAt(0);
-            int rowCount = sheet.getLastRowNum();
-
-            for (int i = 1; i <= rowCount; i++) {
-                Row row = sheet.getRow(i);
-                if (row != null) {
-                    String currentId = getCellValue(row.getCell(0));
-                    if (currentId.equals(testCaseId)) {
-                        Cell statusCell = row.createCell(5); // Column 5 is "Automated"
-                        statusCell.setCellValue(status);
-                        break;
-                    }
-                }
-            }
-
-            try (FileOutputStream fos = new FileOutputStream(FILE_PATH)) {
-                workbook.write(fos);
-            }
-        } catch (IOException e) {
-            throw new RuntimeException("Failed to update test case status in Excel", e);
+    public DbUtil() {
+        try {
+            connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+        } catch (SQLException e) {
+            throw new RuntimeException("Failed to connect to the database", e);
         }
     }
 
-    private static String getCellValue(Cell cell) {
-        if (cell == null)
-            return "";
-        switch (cell.getCellType()) {
-            case STRING:
-                return cell.getStringCellValue();
-            case NUMERIC:
-                return String.valueOf(cell.getNumericCellValue());
-            case BOOLEAN:
-                return String.valueOf(cell.getBooleanCellValue());
-            default:
-                return "";
+    public ResultSet executeQuery(String query) {
+        try {
+            Statement stmt = connection.createStatement();
+            return stmt.executeQuery(query);
+        } catch (SQLException e) {
+            throw new RuntimeException("Failed to execute query: " + query, e);
         }
     }
+
+    public int executeUpdate(String query) {
+        try {
+            Statement stmt = connection.createStatement();
+            return stmt.executeUpdate(query);
+        } catch (SQLException e) {
+            throw new RuntimeException("Failed to execute update: " + query, e);
+        }
+    }
+
+    public void close() {
+        if (connection != null) {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                // Log and ignore
+            }
+        }
+    }
+}
+
+{
+  "code": "package com.transactioninsights.utils;\n\nimport java.sql.Connection;\nimport java.sql.DriverManager;\nimport java.sql.ResultSet;\nimport java.sql.SQLException;\nimport java.sql.Statement;\n\npublic class DbUtil {\n\n    private static final String DB_URL = \"jdbc:mysql://localhost:3306/your_database\";\n    private static final String DB_USER = \"your_username\";\n    private static final String DB_PASSWORD = \"your_password\";\n\n    private Connection connection;\n\n    public DbUtil() {\n        try {\n            connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);\n        } catch (SQLException e) {\n            throw new RuntimeException(\"Failed to connect to the database\", e);\n        }\n    }\n\n    public ResultSet executeQuery(String query) {\n        try {\n            Statement stmt = connection.createStatement();\n            return stmt.executeQuery(query);\n        } catch (SQLException e) {\n            throw new RuntimeException(\"Failed to execute query: \" + query, e);\n        }\n    }\n\n    public int executeUpdate(String query) {\n        try {\n            Statement stmt = connection.createStatement();\n            return stmt.executeUpdate(query);\n        } catch (SQLException e) {\n            throw new RuntimeException(\"Failed to execute update: \" + query, e);\n        }\n    }\n\n    public void close() {\n        if (connection != null) {\n            try {\n                connection.close();\n            } catch (SQLException e) {\n                // Log and ignore\n            }\n        }\n    }\n}\n",
+  "summary": "Added a new DbUtil class in the utils package to handle database connections and queries. It includes methods to execute queries and updates, and manages connection lifecycle with proper exception handling.",
+  "modified_lines": "entire new file"
 }
