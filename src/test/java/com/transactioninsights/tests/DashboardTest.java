@@ -20,6 +20,10 @@ public class DashboardTest extends BaseTest {
         int rowCount = dashboardPage.getRowCount();
         Assert.assertTrue(rowCount > 0, "No rows in table");
         logPass("Transaction table displayed with " + rowCount + " rows");
+
+        logStep("Step 4: Add comment to dashboard");
+        dashboardPage.addComment("Comment by AI");
+        logPass("Comment added to dashboard");
     }
 
     @Test(description = "TC_002: Verify table columns are displayed correctly", retryAnalyzer = TestRetryAnalyzer.class)
