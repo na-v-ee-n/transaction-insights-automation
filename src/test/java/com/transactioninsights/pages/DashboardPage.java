@@ -33,6 +33,8 @@ public class DashboardPage {
     private By modalDialog = By.cssSelector("[role='dialog'], .modal");
     private By autoRefreshToggle = By.cssSelector("button[role='switch']");
     private By columnFilters = By.cssSelector("thead input");
+    private By commentInput = By.cssSelector("textarea.comment-input"); // Assuming a textarea for comments
+    private By commentSubmitButton = By.cssSelector("button.submit-comment"); // Assuming a submit button for comments
 
     public DashboardPage(WebDriver driver) {
         this(driver, null);
@@ -313,6 +315,26 @@ public class DashboardPage {
         } catch (Exception e) {
             logFail("Failed to clear filters: " + e.getMessage());
             throw new ElementNotFoundException("Failed to clear filters", e);
+        }
+    }
+
+    /**
+     * Adds a comment "comment by AI" on the dashboard page.
+     * Assumes presence of a comment input area and a submit button.
+     * Throws ElementNotFoundException if elements are not found.
+     */
+    public DashboardPage addCommentByAI() {
+        try {
+            WebElement commentBox = wait.until(ExpectedConditions.visibilityOfElementLocated(commentInput));
+            commentBox.clear();
+            commentBox.sendKeys("comment by AI");
+            WebElement submitButton = wait.until(ExpectedConditions.elementToBeClickable(commentSubmitButton));
+            submitButton.click();
+            // Optionally wait for comment to be posted or confirmation
+            return this;
+        } catch (Exception e) {
+            logFail("Failed to add comment by AI: " + e.getMessage());
+            throw new ElementNotFoundException("Failed to add comment by AI", e);
         }
     }
 }
