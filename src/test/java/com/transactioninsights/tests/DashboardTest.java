@@ -6,6 +6,7 @@ import org.testng.annotations.Test;
 
 public class DashboardTest extends BaseTest {
 
+    // Comment by Agent
     @Test(description = "TC_001: Verify dashboard loads with title and transaction table", retryAnalyzer = TestRetryAnalyzer.class)
     public void testDashboardLoadsWithTitleAndTable() {
         logStep("Step 1: Verify dashboard loads");
