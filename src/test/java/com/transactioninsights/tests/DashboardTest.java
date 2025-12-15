@@ -109,6 +109,9 @@ public class DashboardTest extends BaseTest {
         logStep("Step 2: Verify modal opens");
         Assert.assertTrue(dashboardPage.isModalDisplayed(), "Modal did not open");
         logPass("Modal opened with Successful Transactions details");
+
+        // COmment bymeee
+        dashboardPage.addCommentToModal("COmment bymeee");
     }
 
     @Test(description = "TC_010: Verify clicking Errored link opens modal", retryAnalyzer = TestRetryAnalyzer.class)
