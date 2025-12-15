@@ -2,9 +2,21 @@ package com.transactioninsights.tests;
 
 import com.transactioninsights.utils.TestRetryAnalyzer;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class DashboardTest extends BaseTest {
+
+    @BeforeMethod(alwaysRun = true)
+    public void setupTestData() {
+        logStep("Setup: Ensure transaction data is present before test");
+        // Clear existing data to avoid duplicates or stale data
+        transactionService.clearAllTransactions();
+        // Insert at least one transaction record for dashboard display
+        transactionService.insertTransaction(
+                "Test Transaction", "2024-06-01", 100, 90, 5, 5, "Completed");
+        logPass("Test transaction data inserted");
+    }
 
     @Test(description = "TC_001: Verify dashboard loads with title and transaction table", retryAnalyzer = TestRetryAnalyzer.class)
     public void testDashboardLoadsWithTitleAndTable() {
