@@ -45,28 +45,38 @@ jobs:
       - name: Install jq
         run: sudo apt-get install jq
  
-      # 6️⃣ Extract stats from Extent Report (if it's in JSON format)
-      - name: Extract Test Stats from Extent Report
+      # 6️⃣ Extract stats from Surefire Report (XML)
+      - name: Extract Test Stats from Surefire Report
         id: stats
+        if: always() # Run even if tests fail so we get the stats
         run: |
-          # Assuming the report is in JSON format
-          REPORT_PATH="test-output/extent-report.json"
+          REPORT_PATH="target/surefire-reports/testng-results.xml"
           if [ -f "$REPORT_PATH" ]; then
-            # Extract the stats using jq (you may need to install jq if not available)
-            TOTAL_TESTS=$(jq '.stats.tests' $REPORT_PATH)
-            PASSED_TESTS=$(jq '.stats.passed' $REPORT_PATH)
-            FAILED_TESTS=$(jq '.stats.failed' $REPORT_PATH)
-            SKIPPED_TESTS=$(jq '.stats.skipped' $REPORT_PATH)
-            TEST_DURATION=$(jq '.stats.duration' $REPORT_PATH)
-            # Set output variables for use in later steps
-            echo "::set-output name=total_tests::$TOTAL_TESTS"
-            echo "::set-output name=passed_tests::$PASSED_TESTS"
-            echo "::set-output name=failed_tests::$FAILED_TESTS"
-            echo "::set-output name=skipped_tests::$SKIPPED_TESTS"
-            echo "::set-output name=test_duration::$TEST_DURATION"
+            # Extract stats from the <testng-results> tag using grep and sed
+            # Example tag: <testng-results ignored="0" total="15" passed="14" failed="1" skipped="0">
+            
+            TOTAL_TESTS=$(grep -o 'total="[0-9]*"' $REPORT_PATH | head -1 | cut -d'"' -f2)
+            PASSED_TESTS=$(grep -o 'passed="[0-9]*"' $REPORT_PATH | head -1 | cut -d'"' -f2)
+            FAILED_TESTS=$(grep -o 'failed="[0-9]*"' $REPORT_PATH | head -1 | cut -d'"' -f2)
+            SKIPPED_TESTS=$(grep -o 'skipped="[0-9]*"' $REPORT_PATH | head -1 | cut -d'"' -f2)
+            
+            # Duration isn't as straightforward in the root tag, setting to N/A or calculating if needed. 
+            # We will skip duration or just say "N/A" for now to be safe.
+            TEST_DURATION="N/A"
+
+            echo "total_tests=$TOTAL_TESTS" >> $GITHUB_OUTPUT
+            echo "passed_tests=$PASSED_TESTS" >> $GITHUB_OUTPUT
+            echo "failed_tests=$FAILED_TESTS" >> $GITHUB_OUTPUT
+            echo "skipped_tests=$SKIPPED_TESTS" >> $GITHUB_OUTPUT
+            echo "test_duration=$TEST_DURATION" >> $GITHUB_OUTPUT
           else
-            echo "Extent report not found at $REPORT_PATH"
-            exit 1
+            echo "Surefire report not found at $REPORT_PATH"
+            # Set defaults so the next step doesn't show empty
+            echo "total_tests=0" >> $GITHUB_OUTPUT
+            echo "passed_tests=0" >> $GITHUB_OUTPUT
+            echo "failed_tests=0" >> $GITHUB_OUTPUT
+            echo "skipped_tests=0" >> $GITHUB_OUTPUT
+            echo "test_duration=0" >> $GITHUB_OUTPUT
           fi
  
       # 7️⃣ Debug: Print Issue Key
