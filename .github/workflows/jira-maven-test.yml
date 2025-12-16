@@ -72,7 +72,8 @@ jobs:
       # 7️⃣ Debug: Print Issue Key
       - name: Debug Issue Key
         if: always()
-        run: echo "Issue Key: ${{ github.event.client_payload.issueKey }}"
+        run: |
+          echo "Issue Key: ${{ github.event.client_payload.issueKey }}"
 
       # 8️⃣ Post comment to Jira (always runs)
       - name: Add comment to Jira issue
