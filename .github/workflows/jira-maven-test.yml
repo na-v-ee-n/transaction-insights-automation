@@ -32,8 +32,8 @@ jobs:
       - name: Run Maven tests
         run: mvn test -Dtestng.groups=smoke -Dsurefire.skip=false
         id: test
-
-      # 4b Upload Extent Report
+ 
+      # 4b Upload Extent Report (Always runs, even if tests fail)
       - name: Upload Test Report
         if: always()
         uses: actions/upload-artifact@v4
@@ -41,33 +41,63 @@ jobs:
           name: extent-report
           path: test-output/
  
-      # 5️⃣ Post comment to Jira (always runs)
+      # 5️⃣ Install jq (if not available)
+      - name: Install jq
+        run: sudo apt-get install jq
+ 
+      # 6️⃣ Extract stats from Extent Report (if it's in JSON format)
+      - name: Extract Test Stats from Extent Report
+        id: stats
+        run: |
+          # Assuming the report is in JSON format
+          REPORT_PATH="test-output/extent-report.json"
+          if [ -f "$REPORT_PATH" ]; then
+            # Extract the stats using jq (you may need to install jq if not available)
+            TOTAL_TESTS=$(jq '.stats.tests' $REPORT_PATH)
+            PASSED_TESTS=$(jq '.stats.passed' $REPORT_PATH)
+            FAILED_TESTS=$(jq '.stats.failed' $REPORT_PATH)
+            SKIPPED_TESTS=$(jq '.stats.skipped' $REPORT_PATH)
+            TEST_DURATION=$(jq '.stats.duration' $REPORT_PATH)
+            # Set output variables for use in later steps
+            echo "::set-output name=total_tests::$TOTAL_TESTS"
+            echo "::set-output name=passed_tests::$PASSED_TESTS"
+            echo "::set-output name=failed_tests::$FAILED_TESTS"
+            echo "::set-output name=skipped_tests::$SKIPPED_TESTS"
+            echo "::set-output name=test_duration::$TEST_DURATION"
+          else
+            echo "Extent report not found at $REPORT_PATH"
+            exit 1
+          fi
+ 
+      # 7️⃣ Post comment to Jira (always runs)
       - name: Add comment to Jira issue
-        if: always()
+        if: always()  # Run this step regardless of test outcome (always)
         run: |
           STATUS="✅ Tests PASSED"
           if [ "${{ job.status }}" != "success" ]; then
             STATUS="❌ Tests FAILED"
           fi
  
+          # Retrieve test stats from previous step
+          TOTAL_TESTS="${{ steps.stats.outputs.total_tests }}"
+          PASSED_TESTS="${{ steps.stats.outputs.passed_tests }}"
+          FAILED_TESTS="${{ steps.stats.outputs.failed_tests }}"
+          SKIPPED_TESTS="${{ steps.stats.outputs.skipped_tests }}"
+          TEST_DURATION="${{ steps.stats.outputs.test_duration }}"
+          # Add comment with statistics and file URL (report upload)
+          COMMENT_BODY="Testing completed!\n\nTest Results:\nTotal Tests: $TOTAL_TESTS\nPassed: $PASSED_TESTS\nFailed: $FAILED_TESTS\nSkipped: $SKIPPED_TESTS\nTest Duration: $TEST_DURATION seconds\n\nTriggered from GitHub Actions"
+ 
+          # Add the comment to the Jira issue
           curl -X POST \
             -u "${{ secrets.JIRA_EMAIL }}:${{ secrets.JIRA_API_TOKEN }}" \
             -H "Content-Type: application/json" \
             "${{ secrets.JIRA_BASE_URL }}/rest/api/3/issue/${{ github.event.client_payload.issueKey }}/comment" \
             -d "{
-              \"body\": {
-                \"type\": \"doc\",
-                \"version\": 1,
-                \"content\": [
-                  {
-                    \"type\": \"paragraph\",
-                    \"content\": [
-                      {
-                        \"type\": \"text\",
-                        \"text\": \"$STATUS\nTriggered from GitHub Actions\nIssue Summary: ${{ github.event.client_payload.summary }}\nPriority: ${{ github.event.client_payload.priority }}\nAssignee: ${{ github.event.client_payload.assignee }}\nCustomField: ${{ github.event.client_payload.customField_10010 }}"
-                      }
-                    ]
-                  }
-                ]
-              }
-            }"
+                  \"body\": \"$COMMENT_BODY\"
+                }"
+          # Upload Extent report to Jira as an attachment
+          curl -X POST \
+            -u "${{ secrets.JIRA_EMAIL }}:${{ secrets.JIRA_API_TOKEN }}" \
+            -H "X-Atlassian-Token: no-check" \
+            -F "file=@test-output/extent-report.html" \
+            "${{ secrets.JIRA_BASE_URL }}/rest/api/3/issue/${{ github.event.client_payload.issueKey }}/attachments"
