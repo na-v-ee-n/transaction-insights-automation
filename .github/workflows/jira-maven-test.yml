@@ -1,0 +1,65 @@
+name: Maven Test Triggered from Jira
+ 
+on:
+  repository_dispatch:
+    types: [jira-test-trigger]
+ 
+jobs:
+  run-tests:
+    runs-on: ubuntu-latest
+ 
+    steps:
+      # 1️⃣ Validate trigger token
+      - name: Validate Jira trigger
+        run: |
+          if [ "${{ github.event.client_payload.token }}" != "${{ secrets.JIRA_TRIGGER_TOKEN }}" ]; then
+            echo "Invalid trigger"
+            exit 1
+          fi
+ 
+      # 2️⃣ Checkout repo
+      - name: Checkout code
+        uses: actions/checkout@v4
+ 
+      # 3️⃣ Setup Java
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+ 
+      # 4️⃣ Run Maven tests
+      - name: Run Maven tests
+        run: mvn test
+        id: maven
+ 
+      # 5️⃣ Post comment to Jira (always runs)
+      - name: Add comment to Jira issue
+        if: always()
+        run: |
+          STATUS="✅ Tests PASSED"
+          if [ "${{ job.status }}" != "success" ]; then
+            STATUS="❌ Tests FAILED"
+          fi
+ 
+          curl -X POST \
+            -u "${{ secrets.JIRA_EMAIL }}:${{ secrets.JIRA_API_TOKEN }}" \
+            -H "Content-Type: application/json" \
+            "${{ secrets.JIRA_BASE_URL }}/rest/api/3/issue/${{ github.event.client_payload.issueKey }}/comment" \
+            -d "{
+              \"body\": {
+                \"type\": \"doc\",
+                \"version\": 1,
+                \"content\": [
+                  {
+                    \"type\": \"paragraph\",
+                    \"content\": [
+                      {
+                        \"type\": \"text\",
+                        \"text\": \"$STATUS\nTriggered from GitHub Actions\nIssue Summary: ${{ github.event.client_payload.summary }}\nPriority: ${{ github.event.client_payload.priority }}\nAssignee: ${{ github.event.client_payload.assignee }}\nCustomField: ${{ github.event.client_payload.customField_10010 }}"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }"

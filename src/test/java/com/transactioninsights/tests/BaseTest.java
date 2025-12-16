@@ -10,8 +10,13 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.testng.ITestContext;
 import org.testng.ITestResult;
+import org.testng.IRetryAnalyzer;
+import com.transactioninsights.utils.TestRetryAnalyzer;
 import org.testng.annotations.*;
+
+import java.util.Arrays;
 
 import java.lang.reflect.Method;
 import java.time.Duration;
@@ -28,7 +33,7 @@ public class BaseTest {
     }
 
     @BeforeMethod
-    public void setUp(Method method) {
+    public void setUp(Method method, ITestContext context, Object[] args) {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--headless=new");
         options.addArguments("--remote-allow-origins=*");
@@ -39,10 +44,21 @@ public class BaseTest {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(TestConfig.getImplicitWait()));
         driver.get(TestConfig.getAppUrl());
 
-        Test testAnnotation = method.getAnnotation(Test.class);
-        String testName = method.getName().replaceAll("([A-Z])", " $1").trim();
-        test = ExtentReportManager.createTest(testName, testAnnotation.description());
-        test.assignCategory("Dashboard Testing");
+        String testKey = method.getName() + Arrays.toString(args);
+        if (context.getAttribute(testKey) != null) {
+            test = (ExtentTest) context.getAttribute(testKey);
+            ExtentReportManager.setTest(test);
+            test.log(Status.INFO, "<b>--- Retry Started ---</b>");
+        } else {
+            Test testAnnotation = method.getAnnotation(Test.class);
+            String testName = method.getName().replaceAll("([A-Z])", " $1").trim();
+            if (args.length > 0) {
+                testName += " " + Arrays.toString(args);
+            }
+            test = ExtentReportManager.createTest(testName, testAnnotation.description());
+            test.assignCategory("Dashboard Testing");
+            context.setAttribute(testKey, test);
+        }
         dashboardPage = new DashboardPage(driver, test);
     }
 
@@ -50,8 +66,21 @@ public class BaseTest {
     public void tearDown(ITestResult result) {
         if (test != null) {
             if (result.getStatus() == ITestResult.FAILURE) {
-                captureScreenshot(result.getName());
-                test.log(Status.FAIL, "Test Failed: " + result.getThrowable());
+                IRetryAnalyzer retryAnalyzer = result.getMethod().getRetryAnalyzer(result);
+                boolean isRetry = false;
+                if (retryAnalyzer instanceof TestRetryAnalyzer) {
+                    TestRetryAnalyzer testRetryAnalyzer = (TestRetryAnalyzer) retryAnalyzer;
+                    if (testRetryAnalyzer.getRetryCount() < testRetryAnalyzer.getMaxRetryCount()) {
+                        isRetry = true;
+                    }
+                }
+
+                if (isRetry) {
+                    test.log(Status.WARNING, "Test Failed, Retrying... Error: " + result.getThrowable().getMessage());
+                } else {
+                    captureScreenshot(result.getName());
+                    test.log(Status.FAIL, "Test Failed: " + result.getThrowable());
+                }
             } else if (result.getStatus() == ITestResult.SUCCESS) {
                 test.log(Status.PASS, "Test Passed");
             } else {
