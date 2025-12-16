@@ -53,21 +53,38 @@ jobs:
           REPORT_PATH="target/surefire-reports/testng-results.xml"
           if [ -f "$REPORT_PATH" ]; then
             # Extract stats from the <testng-results> tag using grep and sed
-            # Example tag: <testng-results ignored="0" total="15" passed="14" failed="1" skipped="0">
+            # Example tag: <testng-results ignored="2" total="17" passed="12" failed="1" skipped="0">
             
-            TOTAL_TESTS=$(grep -o 'total="[0-9]*"' $REPORT_PATH | head -1 | cut -d'"' -f2)
+            # Extract raw counts
             PASSED_TESTS=$(grep -o 'passed="[0-9]*"' $REPORT_PATH | head -1 | cut -d'"' -f2)
             FAILED_TESTS=$(grep -o 'failed="[0-9]*"' $REPORT_PATH | head -1 | cut -d'"' -f2)
             SKIPPED_TESTS=$(grep -o 'skipped="[0-9]*"' $REPORT_PATH | head -1 | cut -d'"' -f2)
+            IGNORED_TESTS=$(grep -o 'ignored="[0-9]*"' $REPORT_PATH | head -1 | cut -d'"' -f2)
             
-            # Duration isn't as straightforward in the root tag, setting to N/A or calculating if needed. 
-            # We will skip duration or just say "N/A" for now to be safe.
-            TEST_DURATION="N/A"
+            # Default to 0 if empty
+            PASSED_TESTS=${PASSED_TESTS:-0}
+            FAILED_TESTS=${FAILED_TESTS:-0}
+            SKIPPED_TESTS=${SKIPPED_TESTS:-0}
+            IGNORED_TESTS=${IGNORED_TESTS:-0}
+
+            # Calculate Total to ensure numbers match for the user
+            # (Raw 'total' attribute in XML often includes retries that aren't in the breakdown)
+            TOTAL_TESTS=$((PASSED_TESTS + FAILED_TESTS + SKIPPED_TESTS + IGNORED_TESTS))
+            
+            # Extract duration-ms from the first <suite> tag
+            DURATION_MS=$(grep -o 'duration-ms="[0-9]*"' $REPORT_PATH | head -1 | cut -d'"' -f2)
+            if [ -n "$DURATION_MS" ]; then
+              # Convert ms to seconds (integer division)
+              TEST_DURATION=$((DURATION_MS / 1000))
+            else
+              TEST_DURATION="N/A"
+            fi
 
             echo "total_tests=$TOTAL_TESTS" >> $GITHUB_OUTPUT
             echo "passed_tests=$PASSED_TESTS" >> $GITHUB_OUTPUT
             echo "failed_tests=$FAILED_TESTS" >> $GITHUB_OUTPUT
             echo "skipped_tests=$SKIPPED_TESTS" >> $GITHUB_OUTPUT
+            echo "ignored_tests=$IGNORED_TESTS" >> $GITHUB_OUTPUT
             echo "test_duration=$TEST_DURATION" >> $GITHUB_OUTPUT
           else
             echo "Surefire report not found at $REPORT_PATH"
@@ -76,6 +93,7 @@ jobs:
             echo "passed_tests=0" >> $GITHUB_OUTPUT
             echo "failed_tests=0" >> $GITHUB_OUTPUT
             echo "skipped_tests=0" >> $GITHUB_OUTPUT
+            echo "ignored_tests=0" >> $GITHUB_OUTPUT
             echo "test_duration=0" >> $GITHUB_OUTPUT
           fi
  
@@ -99,9 +117,10 @@ jobs:
           PASSED_TESTS="${{ steps.stats.outputs.passed_tests }}"
           FAILED_TESTS="${{ steps.stats.outputs.failed_tests }}"
           SKIPPED_TESTS="${{ steps.stats.outputs.skipped_tests }}"
+          IGNORED_TESTS="${{ steps.stats.outputs.ignored_tests }}"
           TEST_DURATION="${{ steps.stats.outputs.test_duration }}"
           # Add comment with statistics and file URL (report upload)
-          COMMENT_BODY="Testing completed!\n\nTest Results:\nTotal Tests: $TOTAL_TESTS\nPassed: $PASSED_TESTS\nFailed: $FAILED_TESTS\nSkipped: $SKIPPED_TESTS\nTest Duration: $TEST_DURATION seconds\n\nTriggered from GitHub Actions"
+          COMMENT_BODY="Testing completed!\n\nTest Results:\nTotal Tests: $TOTAL_TESTS\nPassed: $PASSED_TESTS\nFailed: $FAILED_TESTS\nSkipped: $SKIPPED_TESTS\nDisabled: $IGNORED_TESTS\nTest Duration: $TEST_DURATION seconds\n\nTriggered from GitHub Actions"
  
           # Add the comment to the Jira issue
           curl -X POST \
