@@ -99,7 +99,21 @@ jobs:
             -H "Content-Type: application/json" \
             "${{ secrets.JIRA_BASE_URL }}/rest/api/3/issue/${{ github.event.client_payload.issueKey }}/comment" \
             -d "{
-                  \"body\": \"$COMMENT_BODY\"
+                  \"body\": {
+                    \"type\": \"doc\",
+                    \"version\": 1,
+                    \"content\": [
+                      {
+                        \"type\": \"paragraph\",
+                        \"content\": [
+                          {
+                            \"type\": \"text\",
+                            \"text\": \"$COMMENT_BODY\"
+                          }
+                        ]
+                      }
+                    ]
+                  }
                 }"
           # Upload Extent report to Jira as an attachment
           curl -X POST \
