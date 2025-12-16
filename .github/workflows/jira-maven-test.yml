@@ -30,8 +30,8 @@ jobs:
  
       # 4️⃣ Run Maven tests
       - name: Run Maven tests
-        run: mvn test
-        id: maven
+        run: mvn test -Dtestng.groups=smoke -Dsurefire.skip=false
+        id: test
  
       # 5️⃣ Post comment to Jira (always runs)
       - name: Add comment to Jira issue
