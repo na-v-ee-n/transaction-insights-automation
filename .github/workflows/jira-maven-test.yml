@@ -32,6 +32,14 @@ jobs:
       - name: Run Maven tests
         run: mvn test -Dtestng.groups=smoke -Dsurefire.skip=false
         id: test
+
+      # 4b Upload Extent Report
+      - name: Upload Test Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: extent-report
+          path: test-output/
  
       # 5️⃣ Post comment to Jira (always runs)
       - name: Add comment to Jira issue
