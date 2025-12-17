@@ -18,6 +18,10 @@ public class DashboardTest extends BaseTest {
 
         logStep("Step 3: Verify transaction table has data");
         int rowCount = dashboardPage.getRowCount();
+        if (rowCount == 0) {
+            logError("Transaction table is empty. Investigating backend data retrieval.");
+            // Additional debug info can be logged here if accessible
+        }
         Assert.assertTrue(rowCount > 0, "No rows in table");
         logPass("Transaction table displayed with " + rowCount + " rows");
     }
@@ -48,6 +52,9 @@ public class DashboardTest extends BaseTest {
 
         logStep("Step 2: Verify table has data");
         int rowCount = dashboardPage.getRowCount();
+        if (rowCount == 0) {
+            logError("No data found in transaction table. Possible backend data issue.");
+        }
         Assert.assertTrue(rowCount > 0, "No data to verify");
         logPass("Table has " + rowCount + " rows for consistency verification");
     }
