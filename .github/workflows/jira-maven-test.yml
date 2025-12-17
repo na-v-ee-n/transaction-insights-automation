@@ -150,3 +150,57 @@ jobs:
             -H "X-Atlassian-Token: no-check" \
             -F "file=@test-output/extent-report.html" \
             "${{ secrets.JIRA_BASE_URL }}/rest/api/3/issue/${{ github.event.client_payload.issueKey }}/attachments"
+
+      # 9️⃣ Push Report to External Repo
+      - name: Push Report to External Repo
+        if: always()
+        env: 
+          GH_PAT: ${{ secrets.GH_PAT }}
+        run: |
+          if [ -z "$GH_PAT" ]; then
+            echo "Error: GH_PAT secret is missing. Cannot push to external repo."
+            # We exit nicely so we don't fail the whole build if the token is just missing during setup
+            echo "Please create a repository secret named GH_PAT with a Personal Access Token that has 'repo' scope."
+            exit 0 # Changing to 0 to avoid failing the workflow if just the token is missing, but maybe 1 is better? Let's use 0 and warn.
+          fi
+
+          echo "Cloning destination repository..."
+          # Clone the target repository
+          git clone https://x-access-token:$GH_PAT@github.com/na-v-ee-n/project-evelain.git dest_repo
+          
+          # Check if clone was successful
+          if [ ! -d "dest_repo" ]; then
+             echo "Failed to clone repository. Check URL and Token."
+             exit 1
+          fi
+
+          # Prepare target directory
+          cd dest_repo
+          mkdir -p input/post
+          
+          # Copy the report file
+          # The source file is in the parent directory relative to dest_repo
+          if [ -f "../test-output/extent-report.html" ]; then
+            cp "../test-output/extent-report.html" input/post/extent-report.html
+            echo "Report copied successfully."
+          else
+            echo "Source report file not found!"
+            ls -R ..
+            exit 1
+          fi
+          
+          # Configure Git
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          
+          # Stage changes
+          git add input/post/extent-report.html
+          
+          # Commit and Push (only if changes exist)
+          if git diff --staged --quiet; then
+            echo "No changes in the report. Skipping push."
+          else
+            git commit -m "Update extent report from ${{ github.repository }} run ${{ github.run_id }}"
+            git push
+            echo "Report pushed to https://github.com/na-v-ee-n/project-evelain"
+          fi
