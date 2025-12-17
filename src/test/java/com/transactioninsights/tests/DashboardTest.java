@@ -17,6 +17,7 @@ public class DashboardTest extends BaseTest {
         logPass("Dashboard title is visible");
 
         logStep("Step 3: Verify transaction table has data");
+        dashboardPage.loadTransactionData(); // Ensure data is loaded before checking rows
         int rowCount = dashboardPage.getRowCount();
         Assert.assertTrue(rowCount > 0, "No rows in table");
         logPass("Transaction table displayed with " + rowCount + " rows");
@@ -46,7 +47,10 @@ public class DashboardTest extends BaseTest {
         Assert.assertTrue(dashboardPage.isDashboardLoaded(), "Dashboard not loaded");
         logPass("Dashboard is loaded");
 
-        logStep("Step 2: Verify table has data");
+        logStep("Step 2: Ensure transaction data is loaded");
+        dashboardPage.loadTransactionData(); // Ensure data is loaded before checking rows
+
+        logStep("Step 3: Verify table has data");
         int rowCount = dashboardPage.getRowCount();
         Assert.assertTrue(rowCount > 0, "No data to verify");
         logPass("Table has " + rowCount + " rows for consistency verification");
@@ -55,6 +59,7 @@ public class DashboardTest extends BaseTest {
     @Test(description = "TC_004: Verify search functionality filters table correctly", retryAnalyzer = TestRetryAnalyzer.class, enabled = true)
     public void testSearchFunctionality() {
         logStep("Step 1: Get initial row count");
+        dashboardPage.loadTransactionData(); // Ensure data is loaded before searching
         int initialRows = dashboardPage.getRowCount();
         logPass("Initial row count: " + initialRows);
 
@@ -94,6 +99,7 @@ public class DashboardTest extends BaseTest {
         logPass("Search filter cleared");
 
         logStep("Step 3: Verify table resets to show all transactions");
+        dashboardPage.loadTransactionData(); // Reload data after clearing filter
         int rowCount = dashboardPage.getRowCount();
         Assert.assertTrue(rowCount > 0, "Table should have rows after clearing filter");
         logPass("Table reset successfully (" + rowCount + " rows)");
