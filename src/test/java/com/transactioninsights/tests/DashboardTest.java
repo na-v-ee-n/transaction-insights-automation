@@ -1,8 +1,12 @@
 package com.transactioninsights.tests;
 
 import com.transactioninsights.utils.TestRetryAnalyzer;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import java.time.Duration;
 
 public class DashboardTest extends BaseTest {
 
@@ -16,9 +20,12 @@ public class DashboardTest extends BaseTest {
         Assert.assertTrue(dashboardPage.hasTitle(), "Title not found");
         logPass("Dashboard title is visible");
 
-        logStep("Step 3: Verify transaction table has data");
+        logStep("Step 3: Wait for transaction table to be populated");
+        // Wait up to 10 seconds for the table to have rows
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        boolean rowsPopulated = wait.until(driver -> dashboardPage.getRowCount() > 0);
+        Assert.assertTrue(rowsPopulated, "No rows in table after waiting");
         int rowCount = dashboardPage.getRowCount();
-        Assert.assertTrue(rowCount > 0, "No rows in table");
         logPass("Transaction table displayed with " + rowCount + " rows");
     }
 
